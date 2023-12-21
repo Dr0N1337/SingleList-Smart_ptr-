@@ -16,6 +16,8 @@ private:
 public:
 	List();
 
+	List(const List& second);
+
 	~List();
 
 	void push_back(int data);

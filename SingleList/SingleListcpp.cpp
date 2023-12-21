@@ -3,9 +3,14 @@
 List::List() 
 	: head(nullptr), size(0){}
 
+List::List(const List& second)
+{
+
+}
+
 List::~List()
 {
-	while (head)
+	while (head != nullptr)
 	{
 		auto next = std::move(head->next);
 		head = std::move(next);
@@ -20,11 +25,11 @@ void List::push_back(int data)
 std::string List::toString()
 {
 	std::stringstream buffer;
-	if (head != nullptr)
+	auto current = std::move(head);
+    while (current != nullptr)
 	{
-		std::unique_ptr<Node> current(std::move(head));
-
 	    buffer << current->data << ' ';
+		current = std::move(current->next);
 	}
 	return buffer.str();
 }
